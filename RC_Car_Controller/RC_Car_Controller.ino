@@ -4,6 +4,7 @@
  */
 
 #include <ESP8266WiFi.h>
+#include <PubSubClient.h> ///
 #include <Servo.h>
 
 
@@ -16,6 +17,10 @@
 
 const char* SSID = STASSID;
 const char* PASSWORD = STAPSK;
+const char* awsEndPoint = "a21k21apds1yw8-ats.iot.eu-north-1.amazonaws.com";   ///
+const char* clientId = "RC_CAR";   ///
+const char* topic = "your-publish-topic";   ///
+
 Servo myServo;
 
 void connectWifi();
@@ -32,7 +37,7 @@ void setup() {
   WiFi.begin(SSID, PASSWORD);
   connectWifi();
   myServo.attach(D1);   // attaches the servo on pin D1 to the servo object
-  Serial.println("IP address: ");
+  Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 }
 void loop() {
